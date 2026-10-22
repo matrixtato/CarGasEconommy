@@ -1,0 +1,32 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Build de cada módulo (mobile/automotive/shared)
+**/build/
+.kotlin/
+
+# Ferramental interno de IA (RZ MCP) — não faz parte do app
+.claude/
+.mcp.json
+CLAUDE.md
+AGENTS.md
+.github/copilot-instructions.md
+regras_gerais_ia/
+
+# Certificado local da PWA — cada máquina gera o seu, não versionar
+pwa/certs/*.key
+pwa/certs/*.pem
+pwa/certs/*.crt

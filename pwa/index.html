@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CarGasEconommy - Posto Econômico</title>
+<meta name="description" content="Calculadora de consumo Álcool x Gasolina e registro de abastecimentos">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main>
+  <div class="logo-box">
+    <img src="icons/logo.png" alt="Posto Econômico">
+  </div>
+
+  <div class="install-banner" id="installBanner">
+    <span>Instale este app no seu aparelho para acesso rápido e uso offline.</span>
+    <button id="installBtn">Instalar</button>
+  </div>
+
+  <section class="card alt">
+    <p class="card-title">Preços nos Postos e Consumo do Carro</p>
+    <div class="row">
+      <div class="field">
+        <label for="alcoholPrice">Álcool (R$)</label>
+        <input id="alcoholPrice" inputmode="decimal" placeholder="0,00">
+      </div>
+      <div class="field">
+        <label for="gasolinePrice">Gasolina (R$)</label>
+        <input id="gasolinePrice" inputmode="decimal" placeholder="0,00">
+      </div>
+      <div class="field narrow">
+        <label for="alcoholPercentage">% Álc</label>
+        <input id="alcoholPercentage" inputmode="numeric" placeholder="32">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="alcoholConsumption">Média Álc (Km/L)</label>
+        <input id="alcoholConsumption" inputmode="decimal" placeholder="8">
+      </div>
+      <div class="field">
+        <label for="gasolineConsumption">Média Gas (Km/L)</label>
+        <input id="gasolineConsumption" inputmode="decimal" placeholder="10">
+      </div>
+    </div>
+  </section>
+
+  <section class="card deep" id="comparisonCard" hidden>
+    <p class="comparison-title" id="comparisonRecommendation">ABASTEÇA COM: —</p>
+    <hr class="divider">
+    <div class="comparison-body">
+      <div>
+        <p class="label">Rendimento por Real (Ref. R$ 100,00):</p>
+        <p class="line" id="lineAlc">Álcool: -- Km/R$ = Total -- KMs</p>
+        <p class="line" id="lineGas">Gasolina: -- Km/R$ = Total -- KMs</p>
+      </div>
+      <div class="savings-box">
+        <p class="label">Economia:</p>
+        <p class="value" id="savingsValue">R$ 0,00</p>
+        <p class="hint">a cada 100Km</p>
+      </div>
+    </div>
+    <p class="diff-line" id="diffLine"></p>
+  </section>
+
+  <section class="card">
+    <div class="header-row">
+      <p class="card-title">Registro de Abastecimento</p>
+      <button class="info-btn" id="infoBtn" aria-label="Dica de consumo">ⓘ</button>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="currentKm">KM Atual</label>
+        <input id="currentKm" inputmode="numeric" placeholder="0">
+      </div>
+      <div class="field">
+        <label for="totalPaid">Valor (R$)</label>
+        <input id="totalPaid" inputmode="decimal" placeholder="0,00">
+      </div>
+      <div class="field">
+        <label for="litersAdded">Litros</label>
+        <input id="litersAdded" inputmode="decimal" placeholder="0,0">
+      </div>
+    </div>
+    <p class="warning-msg" id="warningMsg" hidden></p>
+    <p class="result-msg" id="resultMsg" hidden></p>
+    <div class="btn-row">
+      <button class="btn btn-alcohol" id="saveAlcoholBtn">Salvar Álc</button>
+      <button class="btn btn-gasoline" id="saveGasolineBtn">Salvar Gas</button>
+    </div>
+  </section>
+
+  <section class="card history" id="historyCard" hidden>
+    <p class="history-title">Histórico (Últimos 5)</p>
+    <div id="historyRows"></div>
+  </section>
+
+  <p class="nav-title">Buscar postos mais próximos:</p>
+  <div class="nav-row">
+    <button class="map-btn" id="googleMapBtn" data-map="google">📍 Google Maps</button>
+    <button class="map-btn" id="wazeMapBtn" data-map="waze">📍 Waze</button>
+  </div>
+</main>
+
+<div class="modal-backdrop" id="infoModal">
+  <div class="modal">
+    <h3>Dica de Consumo</h3>
+    <p>Esta informação é uma estimativa de consumo real.
+
+Dica: Use a luz de reserva como referência. Quando ela acender, informe o KM, abasteça e anote os litros.
+
+Na próxima vez que a luz acender, informe o novo KM. O cálculo será a diferença entre os KMs sobre os litros abastecidos anteriormente.</p>
+    <div class="modal-actions">
+      <button id="infoCloseBtn">ENTENDI</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
